@@ -17,6 +17,8 @@ class AppImages {
 
   static const String hadethItemBackground = "assets/images/hadeth_item_background.png";
 
+  static const String imageMostRecent = "assets/images/image_most_recent.png";
+
 }
 
 class AppThemes {

@@ -1,10 +1,5 @@
-class Chapter{
-  String arabicName;
-  String englishName;
-  String versesNumber;
-
-  int chapterIndex;
-
+// data class
+class Chapter {
   static List<String> arabicAuranSuras = [
     "الفاتحه",
     "البقرة",
@@ -119,7 +114,7 @@ class Chapter{
     "المسد",
     "الإخلاص",
     "الفلق",
-    "الناس"
+    "الناس",
   ];
   static List<String> englishQuranSurahs = [
     "Al-Fatiha",
@@ -235,7 +230,7 @@ class Chapter{
     "Al-Masad",
     "Al-Ikhlas",
     "Al-Falaq",
-    "An-Nas"
+    "An-Nas",
   ];
   static List<String> AyaNumber = [
     '7',
@@ -351,22 +346,34 @@ class Chapter{
     '5',
     '4',
     '5',
-    '6'
+    '6',
   ];
+  String arabicName;
+  String englishName;
+  String versesNumber;
+  int chapterIndex;
 
-  static var chapters;
+  Chapter(
+      this.arabicName,
+      this.englishName,
+      this.versesNumber,
+      this.chapterIndex,
+  );
 
-  Chapter(this.arabicName, this.englishName, this.versesNumber, this.chapterIndex);
+  static List<Chapter> chapters = getQuranChapters();
 
-  static List<Chapter> getQuranChapters(){
-    List<Chapter> chapters = List.generate(114,
-            (index) => Chapter(
-                arabicAuranSuras[index],
-                englishQuranSurahs[index],
-                AyaNumber[index],
-                index + 1
-            ),
+  // memory ->
+  static List<Chapter> visitedChapters = [];
+  static List<Chapter> getQuranChapters() {
+    List<Chapter> chapters = List.generate(
+      114, (index) => Chapter(
+        arabicAuranSuras[index],
+        englishQuranSurahs[index],
+        AyaNumber[index],
+        index + 1,
+      ),
     );
+
     return chapters;
   }
 }

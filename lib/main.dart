@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/UI/chapter_details/ChapterDetails.dart';
+import 'package:islami_app/UI/common/MostRecentSharedPrefences.dart';
 import 'package:islami_app/UI/design.dart';
+import 'package:islami_app/UI/providers/MostRecentProvider.dart';
 import 'package:islami_app/UI/routes.dart';
 import 'package:islami_app/UI/home/HomeScreen.dart';
 import 'package:islami_app/UI/intro/IntroScreen.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:provider/provider.dart';
 
 
-void main() {
-  runApp(const MyApp());
+  void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await MostRecentSharedPreferences.init();
+
+  runApp(
+    ChangeNotifierProvider(
+        create: (context) => MostRecentProvider(),
+        child: MyApp(),
+    ),
+
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -5,6 +5,9 @@ import 'package:islami_app/UI/chapter_details/verse_item.dart';
 import 'package:islami_app/UI/common/AppScreenWrapper.dart';
 import 'package:islami_app/UI/design.dart';
 import 'package:islami_app/UI/home/Sura.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/MostRecentProvider.dart';
 
 class ChapterDetails extends StatefulWidget {
   ChapterDetails({super.key});
@@ -21,6 +24,8 @@ class _ChapterDetailsState extends State<ChapterDetails> {
 
     var chapter = ModalRoute.of(context)!.settings.arguments as Chapter;
 
+    saveChapterToLastVisited(chapter);
+
     if(verses.isEmpty)
       loadVerses(chapter.chapterIndex);
 
@@ -35,9 +40,7 @@ class _ChapterDetailsState extends State<ChapterDetails> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                  'assets/images/chapter_details_background.png',
-                ),
+                image: AssetImage('assets/images/chapter_details_background.png',),
                 fit: BoxFit.cover,
               ),
             ),
@@ -74,6 +77,13 @@ class _ChapterDetailsState extends State<ChapterDetails> {
       ),
     );
   }
+
+  void saveChapterToLastVisited(Chapter chapter) {
+    MostRecentProvider provider = Provider.of<MostRecentProvider>(
+        context, listen: false);
+    provider.saveChapter(chapter);
+  }
+
 
   void loadVerses(int chapterIndex) async {   // async function can await
     String content = await rootBundle.loadString("assets/files/$chapterIndex.txt");
