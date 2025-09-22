@@ -15,6 +15,7 @@ class AppImages {
   static const String islamilogo = "assets/images/islamilogo.png";
   static const String star = "assets/images/Vector.svg";
 
+  static const String hadethItemBackground = "assets/images/hadeth_item_background.png";
 
 }
 
@@ -62,23 +63,14 @@ class AppThemes {
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.gold,
-      selectedIconTheme: IconThemeData(
-        color: Colors.white,
-        size: 36,
-      ),
 
-      unselectedIconTheme: IconThemeData(
-        color: Colors.black,
-        size: 24,
-      ),
+      selectedIconTheme: IconThemeData(color: Colors.white, size: 36,),
 
-      selectedLabelStyle: TextStyle(
-        color: Colors.white,
-      ),
+      unselectedIconTheme: IconThemeData(color: Colors.black, size: 24,),
 
-      unselectedLabelStyle: TextStyle(
-        color: Colors.black,
-      ),
+      selectedLabelStyle: TextStyle(color: Colors.white,),
+
+      unselectedLabelStyle: TextStyle(color: Colors.black,),
     ),
 
       scaffoldBackgroundColor: Colors.transparent,
